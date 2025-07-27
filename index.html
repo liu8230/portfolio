@@ -1,126 +1,411 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A111280007 劉芷庭</title>
-    <!-- Latest compiled and minified CSS -->
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-	
-	<link href="mycss.css" rel="stylesheet">
-	
-	<link href="javascript.js" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        /* ===== 基本設定 ===== */
+        * {
+            box-sizing: border-box;
+        }
 
-    <!-- Latest compiled JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* ===== 輪播優化 ===== */
+        .carousel-inner {
+            text-align: center;
+        }
+
+        .carousel-inner .carousel-item img {
+            width: 100%;
+            height: 400px; /* 調整回適當高度 */
+            object-fit: contain; /* 改為 contain 以完整顯示圖片 */
+            object-position: center;
+            display: block;
+            margin: 0 auto;
+            background-color: #f8f9fa; /* 加上背景色，讓白邊更自然 */
+        }
+
+        /* ===== 導航欄優化 ===== */
+        .navbar-nav li:hover > ul.dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-submenu {
+            position: relative;
+        }
+
+        .dropdown-submenu > .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -3px;
+        }
+
+        /* ===== 服務項目區塊 ===== */
+        .service-items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .service-item {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            max-width: 250px;
+        }
+
+        .service-item img {
+            width: 75px;
+            height: 75px;
+            margin-bottom: 10px;
+        }
+
+        .service-item span {
+            display: block;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        /* ===== 產品展示區塊 ===== */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .product-item {
+            text-align: center;
+            padding: 15px;
+        }
+
+        .product-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .product-item h5 {
+            margin: 15px 0 10px;
+            font-size: 16px;
+        }
+
+        .product-item p {
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        /* ===== 唇彩系列 hover 效果 ===== */
+        .lipstick-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .lipstick-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .lipstick-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: opacity 0.5s ease;
+        }
+
+        .lipstick-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #000;
+            color: white;
+            padding: 10px 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            border-radius: 4px;
+        }
+
+        .lipstick-item:hover img {
+            opacity: 0.3;
+        }
+
+        .lipstick-item:hover .lipstick-overlay {
+            opacity: 1;
+        }
+
+        /* ===== 香水區塊 ===== */
+        .perfume-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .perfume-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .perfume-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: opacity 0.5s ease;
+        }
+
+        .perfume-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .perfume-item:hover .perfume-overlay {
+            opacity: 1;
+        }
+
+        /* ===== Footer 優化 ===== */
+        .footer-content {
+            padding: 40px 0;
+        }
+
+        .footer-form {
+            max-width: 500px;
+        }
+
+        /* ===== 響應式設計 ===== */
+        @media (max-width: 992px) {
+            .carousel-inner .carousel-item img {
+                height: 350px; /* 中等螢幕高度 */
+            }
+            
+            .service-items {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .service-item {
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* 輪播高度調整 */
+            .carousel-inner .carousel-item img {
+                height: 300px; /* 手機版適當高度 */
+            }
+
+            /* 導航欄調整 */
+            .navbar-nav .nav-link {
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+
+            /* 多層下拉在手機上簡化 */
+            .dropdown-submenu > .dropdown-menu {
+                position: static;
+                left: 0;
+                margin-top: 0;
+                box-shadow: none;
+                border: none;
+                background-color: #f8f9fa;
+            }
+
+            /* 產品網格調整 */
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 15px;
+            }
+
+            .lipstick-container,
+            .perfume-container {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 10px;
+            }
+
+            .lipstick-item img,
+            .perfume-item img {
+                height: 200px;
+            }
+
+            /* Footer 表單調整 */
+            .footer-form {
+                margin-top: 20px;
+            }
+
+            /* 按鈕大小調整 */
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .carousel-inner .carousel-item img {
+                height: 250px; /* 小螢幕適當高度 */
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lipstick-container,
+            .perfume-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .service-item {
+                min-width: 100%;
+            }
+        }
+
+        /* ===== 原有樣式保持 ===== */
+        .alert-dark {
+            background-color:	#d1d1e0;
+            color: white;
+        }
+
+        .bg-black {
+            background-color: #000 !important;
+        }
+		
+		
+    </style>
 </head>
 <body>
-  
-  <div class="alert alert-dark alert-dismissible fade show">
-    <center><strong>全館不限金額</strong> 下單享自由不羈香氛貼飾 <a href="#" class="alert-link">🎁立即擁有>></a></center>
-    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-</div>
-<nav class="navbar navbar-expand-sm bg-black navbar-dark">
-  <div class="container-fluid" style="display:block; margin:auto; height:45px;">
-    <a class="navbar-brand" href="#">
-      <img src="images/yysl.jpg" style="display:block; margin:auto;" / alt="Avatar Logo" height="45px" width="380px" > 
-    </a>
-  </div>
-</nav>
+    <!-- 頂部促銷橫幅 -->
+    <div class="alert alert-dark alert-dismissible fade show mb-0">
+        <div class="text-center">
+            <strong>全館不限金額</strong> 下單享自由不羈香氛貼飾 
+            <a href="#" class="alert-link">🎁立即擁有>></a>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
 
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <div class="container-fluid">
-    
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navDropdown2">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Saint Laurent</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#v" class="nav-link">官網獨家優惠活動</a>
-                </li>
-                <!-- 下拉式選單 Dropdown -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">彩妝</a>
+    <!-- Logo 導航欄 -->
+    <nav class="navbar bg-black py-2"> <!-- 減少padding -->
+        <div class="container-fluid justify-content-center">
+            <a class="navbar-brand" href="#">
+                <img src="images/yysl.jpg" alt="YSL Logo" height="35" width="280" class="d-inline-block align-text-top"> <!-- 調整Logo大小 -->
+            </a>
+        </div>
+    </nav>
 
-                    <!-- 下拉式選單選項 Dropdown items -->
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">臉部</a>
-						 <ul class="dropdown-menu">
-						 
-                                <li><a class="dropdown-item" href="#">妝前乳</a></li>
-                                <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">底妝</a>
-
-                                    <!-- 子選單Level 3 -->
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">⁕粉底</a></li>
-                                        <li><a class="dropdown-item" href="#">⁕氣墊粉底</a></li>
-
-                                </li>
-                                </ul>
-								</li>
-                            </li>
-                        </ul>
-                        <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">眼部</a>
-
-                            <!-- 子選單Level 2 -->
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">眉毛</a></li>
-								<li><a class="dropdown-item" href="#">眼線</a></li>
-								<li><a class="dropdown-item" href="#">睫毛膏</a></li>
-								<li><a class="dropdown-item" href="#">眼影盤</a></li>
-                                </ul>
-                            </li>
-                        <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#c">唇部</a>
-
-                            <!-- 子選單Level 2 -->
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#c">唇膏</a></li>
-								<li><a class="dropdown-item" href="#c">唇釉</a></li>
-								<li><a class="dropdown-item" href="#c">唇露</a></li>
-								<li><a class="dropdown-item" href="#c">唇線筆</a></li>	
-                        </ul>
-                    <li><a class="dropdown-item" href="#">指彩</a>
-                </ul>
-				<!-- 下拉式選單 Dropdown -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">保養</a>
-
-                    <!-- 下拉式選單選項 Dropdown items -->
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">產品功能</a>
-
-                            <!-- 子選單Level 2 -->
-                            <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">潔顏｜卸妝</a></li>
-                                        <li><a class="dropdown-item" href="#">化妝水</a></li>
-										<li><a class="dropdown-item" href="#">精華液</a></li>
-										<li><a class="dropdown-item" href="#">面膜</a></li>
-										<li><a class="dropdown-item" href="#">護手霜</a></li>
-							</ul>
-						</li>
-						                        <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">產品系列</a>
-
-                            <!-- 子選單Level 2 -->
-                            <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">極效活萃系列</a></li>
-                                        <li><a class="dropdown-item" href="#">名模肌密系列</a></li>
-										<li><a class="dropdown-item" href="#">金緻奢華賦活系列</a></li>
-							</ul>
-						</li>
-					</ul>
-				</li>
-                <li class="nav-item dropdown">
-                    <a href="#f" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">香水</a>
+    <!-- 主導航欄 -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Saint Laurent</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#exclusive-offers" class="nav-link">官網獨家優惠活動</a>
+                    </li>
+                    
+                    <!-- 彩妝下拉選單 -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">彩妝</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#f">女性香水</a></li>
-                          <li><a class="dropdown-item" href="#f">男性香水</a></li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">臉部</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">妝前乳</a></li>
+                                    <li class="dropdown-submenu">
+                                        <a class="dropdown-item dropdown-toggle" href="#">底妝</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#">⁕粉底</a></li>
+                                            <li><a class="dropdown-item" href="#">⁕氣墊粉底</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">眼部</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">眉毛</a></li>
+                                    <li><a class="dropdown-item" href="#">眼線</a></li>
+                                    <li><a class="dropdown-item" href="#">睫毛膏</a></li>
+                                    <li><a class="dropdown-item" href="#">眼影盤</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#lipstick-section">唇部</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#lipstick-section">唇膏</a></li>
+                                    <li><a class="dropdown-item" href="#lipstick-section">唇釉</a></li>
+                                    <li><a class="dropdown-item" href="#lipstick-section">唇露</a></li>
+                                    <li><a class="dropdown-item" href="#lipstick-section">唇線筆</a></li>
+                                </ul>
+                            </li>
+                            <li><a class="dropdown-item" href="#">指彩</a></li>
                         </ul>
                     </li>
+                    
+                    <!-- 保養下拉選單 -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">保養</a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">產品功能</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">潔顏｜卸妝</a></li>
+                                    <li><a class="dropdown-item" href="#">化妝水</a></li>
+                                    <li><a class="dropdown-item" href="#">精華液</a></li>
+                                    <li><a class="dropdown-item" href="#">面膜</a></li>
+                                    <li><a class="dropdown-item" href="#">護手霜</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">產品系列</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">極效活萃系列</a></li>
+                                    <li><a class="dropdown-item" href="#">名模肌密系列</a></li>
+                                    <li><a class="dropdown-item" href="#">金緻奢華賦活系列</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <!-- 香水下拉選單 -->
+                    <li class="nav-item dropdown">
+                        <a href="#perfume-section" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button">香水</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#perfume-section">女性香水</a></li>
+                            <li><a class="dropdown-item" href="#perfume-section">男性香水</a></li>
+                        </ul>
+                    </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="#">關於</a>
                     </li>
@@ -128,412 +413,421 @@
                         <a class="nav-link" href="#">永續發展</a>
                     </li>
                 </ul>
-            <form class="d-flex ms-auto">
-			  <input class="form-control me-2" type="text" placeholder="Search">
-			  <button class="btn btn-primary" type="button">Search</button>
-			</form>
-      </div>
-</nav>
+                
+                <!-- 搜尋欄 -->
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
 
-
-
-    <!-- Carousel -->
-    <div id="demo" class="carousel slide" data-bs-ride="carousel">
-
-        <!-- Indicators/dots -->
+    <!-- 輪播區塊 -->
+    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+        <!-- 指示器 -->
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-            <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-            <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-            <button type="button" data-bs-target="#demo" data-bs-slide-to="3"></button>
-            <button type="button" data-bs-target="#demo" data-bs-slide-to="4"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="3"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="4"></button>
         </div>
     
-        <!-- The slideshow/carousel -->
-
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="images/la.jpg" alt="Los Angeles"  width="850px"  height="400px" >
-    </div>
-	<div class="carousel-item active">
-      <img src="images/o.jpg" alt="Los Angeles" width="850px"  height="400px">
-    </div>
-	<div class="carousel-item active">
-      <img src="images/7.jpg" alt="Los Angeles" width="850px"  height="400px">
-    </div>
-    <div class="carousel-item">
-      <img src="images/9.jpg" alt="Chicago" width="850px"  height="400px">
-    </div>
-    <div class="carousel-item">
-      <img src="images/0.jpg" alt="New York" width="850px"  height="400px">
-    </div>
-  </div>
+        <!-- 輪播內容 -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="images/la.jpg" alt="Slide 1" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="images/o.jpg" alt="Slide 2" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="images/7.jpg" alt="Slide 3" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="images/9.jpg" alt="Slide 4" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="images/0.jpg" alt="Slide 5" class="d-block w-100">
+            </div>
+        </div>
     
-        <!-- Left and right controls/icons -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+        <!-- 控制按鈕 -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon"></span>
+            <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
             <span class="carousel-control-next-icon"></span>
+            <span class="visually-hidden">Next</span>
         </button>
     </div>
-</div>
 
-    <div id="v" class="alert alert-secondary">
-        <strong>官網獨家</strong> 限定組合 <a href="#v" class="alert-link">Just for you</a>.
-    </div>
-
-<div id="v" class="image-container">
-  <div class="image-item">
-    <img src="images/2.jpg" alt="Card image">
-    <div class="image-details">
-      <h5>粉氣墊+午夜粉底+水唇膏</h5>
-      <p>NT$7,000</p>
-      <a href="#" class="btn btn-dark">選購這個組合</a>
-    </div>
-  </div>
-  <div class="image-item">
-    <img src="images/1.jpg" alt="Card image">
-    <div class="image-details">
-      <h5>皮革氣墊+午夜粉底+水唇膏</h5>
-      <p>NT$7,000</p>
-      <a href="#" class="btn btn-dark">選購這個組合</a>
-    </div>
-  </div>
-  <div class="image-item">
-    <img src="images/3.jpg" alt="Card image">
-    <div class="image-details">
-      <h5>精華水氣墊 高訂金釦+午夜粉底+水唇膏</h5>
-      <p>NT$7,000</p>
-      <a href="#" class="btn btn-dark">選購這個組合</a>
-    </div>
-  </div>
-  <div class="image-item">
-    <img src="images/4.jpg" alt="Card image">
-    <div class="image-details">
-      <h5>精華水氣墊 高訂金釦+午夜粉底+水唇膏</h5>
-      <p>NT$7,000</p>
-      <a href="#" class="btn btn-dark">選購這個組合</a>
-    </div>
-  </div>
-</div>
-
-<img src="images/34.jpg" alt="Image 1" style="display: block; margin-right: auto; max-width: 100%; max-height: 100%;">
-<img src="images/35.jpg" alt="Image 2" style="display: block; margin-left: auto; max-width: 100%; max-height: 100%;">
-
-    <div id="c" class="alert alert-danger">
-        <strong>新品上市</strong> 熱銷唇彩系列 <a href="#" class="alert-link">Just for you</a>.
-    </div>
-
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-.container-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.container {
-  position: relative;
-  width: fit-content;
-  margin-bottom: 10px;
-}
-
-.image {
-  opacity: 1;
-  display: block;
-  width: 300px;
-  height: 300px;
-  transition: .5s ease;
-  backface-visibility: hidden;
-}
-
-.middle {
-  transition: .5s ease;
-  opacity: 0;
-  position: absolute;
-  top: 43%;
-  right: 35%;
-  transform: translate(0, 0%);
-  -ms-transform: translate(0, 0%);
-  text-align: left;
-}
-
-.container:hover .image {
-  opacity: 0.3;
-}
-
-.container:hover .middle {
-  opacity: 1;
-}
-
-.text {
-  background-color: #000000;
-  color: white;
-  font-size: 13px;
-  padding: 13px 26px;
-}
-
-/* 新增的CSS */
-.container {
-  margin-left: 5px; /* 調整左邊距 */
-}
-</style>
-</head>
-
-<body>
-<div class="container-wrapper">
-  <div class="container">
-    <img src="images/a.jpg" alt="Avatar" class="image">
-    <div class="middle">
-      <div class="text">加入購物車</div>
-    </div>
-  </div>
-  
-  <div class="container">
-    <img src="images/b.jpg" alt="Avatar" class="image">
-    <div class="middle">
-      <div class="text">加入購物車</div>
-    </div>
-  </div>
-  
-  <div class="container">
-    <img src="images/c.jpg" alt="Avatar" class="image">
-    <div class="middle">
-      <div class="text">加入購物車</div>
-    </div>
-  </div>
-  
-    <div class="container">
-    <img src="images/d.jpg" alt="Avatar" class="image">
-    <div class="middle">
-      <div class="text">加入購物車</div>
-    </div>
-  </div>
-  
-  <div class="container">
-    <img src="images/e.jpg" alt="Avatar" class="image">
-    <div class="middle">
-      <div class="text">加入購物車</div>
-    </div>
-  </div>
-  
-  <div class="container">
-    <img src="images/f.jpg" alt="Avatar" class="image">
-    <div class="middle">
-      <div class="text">加入購物車</div>
-    </div>
-  </div>
-  
-  <div class="container">
-    <img src="images/g.jpg" alt="Avatar" class="image">
-    <div class="middle">
-      <div class="text">加入購物車</div>
-    </div>
-  </div>
-  
-  <div class="container">
-    <img src="images/i.jpg" alt="Avatar" class="image">
-    <div class="middle">
-      <div class="text">加入購物車</div>
-    </div>
-  </div>
-</div>
-  
-</body>
-</html>
-
-<img src="images/12.jpg" alt="Image 1" style="display: block; margin: 0 auto; max-width: 100%; max-height: 100%;">
-
-   <div id="f" class="alert alert-primary">
-        <strong>香水熱銷推薦</strong> 專為您精選 <a href="#" class="alert-link">Just for you</a>.
-    </div>
-   
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-* {box-sizing: border-box;}
-
-.horizontal-container {
-  display: flex;
-}
-
-.container {
-  width: 50%;
-  max-width: 300px;
-  position: relative;
-}
-
-.image {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.overlay {
-  position: static;
-  background: rgba(0, 0, 0, 0.5); /* Black see-through */
-  color: #f1f1f1;
-  transition: .5s ease;
-  opacity:0;
-  color: white;
-  font-size: 15px;
-  padding: 15px;
-  text-align: center;
-}
-
-.container:hover .overlay {
-  opacity: 1;
-}
-</style>
-</head>
-<body>
-
-<div id="f" class="horizontal-container">
-  <div class="container">
-    <img src="images/w.jpg" alt="Avatar" class="image">
-    <div class="overlay">add to the cart</div>
-  </div>
-  
-  <div class="container">
-    <img src="images/q.jpg" alt="Avatar" class="image">
-    <div class="overlay">add to the cart</div>
-  </div>
-  
-  <div class="container">
-    <img src="images/r.jpg" alt="Avatar" class="image">
-    <div class="overlay">add to the cart</div>
-  </div>
-
-  <div class="container">
-    <img src="images/s.jpg" alt="Avatar" class="image">
-    <div class="overlay">add to the cart</div>
-  </div>
-</div>
-
-<!-- 其他程式碼 -->
-</body>
-</html>
-
-
-<img src="images/33.jpg" alt="Image 1" style="display: block; margin: 0 auto; max-width: 100%; max-height: 100%;">
-
-
-
-
-   
-    <div class="mt-4 p-5 bg-black text-white rounded">
-	<form action="/action_page.php">
-    
-    <footer class="l-footer">
-    <div class="l-footer__top">
-        <div class="l-footer__top-layout">
-            <div class="l-footer__top-inner">
-            <!-- dwMarker="content" dwContentID="f819a890c8e6ecb258df8530d7" --><div class="c-content-reassurance" >
-    <div class="c-content-reassurance__items l-row l-row-padding m-small-up-1 m-large-up-1 inline-items">
-		<div class="l-column" >
-		<div class="c-content-reassurance__item" >
-			<img class="c-content-reassurance__image"  src="https://www.yslbeauty.com.tw/on/demandware.static/-/Sites-ysl-tw-ng-Library/default/dwd2c0fa11/images/demo/freeship-svc1.png" alt="送貨免運" style="width: 75px;" >
-			<span class="c-content-reassurance__text" >送貨免運<br>單筆訂單達NT.$2,000元以上享超取/<br>宅配免運費</span>
-		</div>
-</div>
-		<div class="l-column" >
-		<div class="c-content-reassurance__item" >
-			<img class="c-content-reassurance__image"  src="https://www.yslbeauty.com.tw/on/demandware.static/-/Sites-ysl-tw-ng-Library/default/dw9bc13614/images/demo/excluoffer-svc2.png" alt="獨家優惠" style="width: 75px;">
-			<span class="c-content-reassurance__text" >獨家優惠<br>不定期推出線上獨家活動記得隨時關<br>注官網把握機會!</span>
-		</div>
-</div>
-		<div class="l-column" >
-		<div class="c-content-reassurance__item" >
-			<img class="c-content-reassurance__image"  src="https://www.yslbeauty.com.tw/on/demandware.static/-/Sites-ysl-tw-ng-Library/default/dw7f2f065c/images/demo/freesamp-svc3.png" alt="任選試用，YSL美麗體驗" style="width: 75px;">
-			<span class="c-content-reassurance__text" >任選試用，YSL美麗體驗 <br>單筆訂單(不限金額)皆<br>可任選商品試用包，全方位體驗YSL美麗</span>
-		</div>
-</div>
-		<div class="l-column" >
-		<div class="c-content-reassurance__item" >
-			<img class="c-content-reassurance__image"  src="https://www.yslbeauty.com.tw/on/demandware.static/-/Sites-ysl-tw-ng-Library/default/dwfb773c39/images/demo/return-svc4.png" alt="安全支付" style="width: 75px;">
-			<span class="c-content-reassurance__text" >安全支付<br>採用高規格安全防護機制，確保您的每一<br>筆訂單安全安心</span>
-		</div><br>
-</div>
-    
-	
-<div class="row">
-  <div class="col-sm-6">
-  
-  <div class="mb-1 row">
-  <label for="email" class="col-sm-3 col-form-label">Email:</label>
-  <div class="col-sm-5">
-    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-  </div>
-</div>
-<div class="mb-1 row">
-  <label for="pwd" class="col-sm-3 col-form-label">Password:</label>
-  <div class="col-sm-5">
-    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
-  </div>
-</div><br>
-  <div class="form-check mb-3">
-    <label class="form-check-label">
-      <input class="form-check-input" type="checkbox" name="remember">*我同意接受隱私權政策.*
-    </label>
-    </div>
-	  <div class="col-sm-6">
-    <div class="image-item">
-	<img src="images/5.jpg" alt="Avatar" class="image">
-  </div> 
-  </div>
-</div>
-  <div class="col-sm-6">
-
-                <div class="l-footer__content-section">
-                    <div class="l-footer__newsletter">
-                         <div class="c-simple-signup ">   <h2 class='c-simple-signup__title c-form__title '> 訂閱電子報 </h2>  <div class="c-simple-signup__form "> 
-						 <form action="/on/demandware.store/Sites-ysl-tw-ng-Site/zh_TW/Newsletter-SignUpSubmit" method="POST" name="newslettersignup" data-component="global/Form" class="c-form " data-component-options="{&quot;successModal&quot;:{&quot;classNames&quot;:{&quot;container&quot;:[&quot;m-medium&quot;]}},&quot;events&quot;:{&quot;success&quot;:&quot;signup.success&quot;,&quot;customSuccess&quot;:&quot;toaster.close&quot;},&quot;captcha&quot;:{&quot;invisible&quot;:true},&quot;errorMessages&quot;:{&quot;captchaRequired&quot;:&quot;請確認你輸入了正確的安全驗證資料&quot;},&quot;text&quot;:{&quot;accessibility&quot;:{&quot;processingStatusMessage&quot;:&quot;Newsletter signing up is in progress&quot;,&quot;finishedStatusMessage&quot;:&quot;Newsletter signing up has been finished&quot;},&quot;offlineErrorMessage&quot;:&quot;Network error. Please check your Internet connection and try again.&quot;}}" data-analytics="{&quot;category&quot;:&quot;registration&quot;,&quot;action&quot;:&quot;newsletter&quot;,&quot;label&quot;:&quot;footer&quot;,&quot;extraData&quot;:{&quot;event_name&quot;:&quot;newsletter_registration&quot;,&quot;referral&quot;:&quot;footer&quot;}}" data-has-active-csrf="true">   
-						 <div class=" c-form__row m-group" data-js-group="" >   
-						 <div data-component='global/TextField' data-component-options='{}' class=' c-field c-text-field m-float' data-js-field-component='true'> 
-						 <input type='email' autocomplete='email' data-js-field='true' name='email' class=' c-text-field__input' id='email-056024' placeholder=' ' pattern='^[a-zA-Z0-9_\-\.\+]{1,}@([\da-zA-Z-]{1,}\.){1,}[\da-zA-Z-]{2,20}$' data-error-pattern='<span data-js-error-message class="h-show-for-sr">Error : </span>電子郵件格式不符' data-error-format='<span data-js-error-message class="h-show-for-sr">Error : </span>電子郵件格式不符' required='required' aria-required='true' data-error-required='<span data-js-error-message class="h-show-for-sr">Error : 電子郵件 is required</span>請輸入電子郵件' data-js-anchor='true' />  <label class=' m-float c-text-field__label' for='email-056024'>請輸入您的電子郵件
-						 <span class="h-text-size-14" aria-hidden="true">*</span></label>   </div>     </div>     <div data-component='global/TextField' data-component-options='{}' class=' c-field c-text-field m-float h-hidden' data-js-field-component='true'>  <input type='tel' autocomplete='mobile tel-national' data-js-field='true' name='phonemobile' class=' c-text-field__input' id='phonemobile-051626' placeholder=' ' pattern='^\d{10}$' data-error-pattern='<span data-js-error-message class="h-show-for-sr">Error : </span>請輸入10位數字的行動電話號碼' data-error-format='<span data-js-error-message class="h-show-for-sr">Error : </span>請輸入有效的行動電話' />  
-						 <label class=' m-float c-text-field__label' for='phonemobile-051626'>請輸入10位數字的行動電話號碼</label>   </div>     <div class="c-form__row-title c-simple-signup__group-label" >forms-privacypolicy-signupgroup-label</div>     <div class="m-fullwidth c-form__row m-group" data-js-group="" >     <div data-component='global/AbstractField' data-component-options='{}' class=' c-field c-check-field m-checkbox h-hidden' data-js-field-component='true'>  <input type='checkbox' data-js-field='true' name='acceptemailsignup' class=' c-check-field__input' id='acceptemailsignup-017896' required='required' aria-required='true' data-error-required='<span data-js-error-message class="h-show-for-sr">Error : acceptemailsignup is required</span>請選擇' checked='true' value='on' /> 
-						 <label class=' c-check-field__label' for='acceptemailsignup-017896'>forms-emailsignup-label<span class="h-text-size-14" aria-hidden="true">*</span></label>   </div>     <div class='c-simple-signup__contact-preference c-field c-check-field m-checkbox m-separator h-hidden' data-component='global/AbstractField' data-component-options='{}' data-js-field-component='true'> 
-						 <input type='checkbox' data-js-field='true' name='acceptmobilesignup' class=' c-check-field__input' id='acceptmobilesignup-039054' /> 
-						 <label class=' c-check-field__label' for='acceptmobilesignup-039054'>forms-mobilesignup-label</label>   </div>     </div>  
-						 <div data-component='global/AbstractField' data-component-options='{}' class=' c-field c-check-field m-checkbox' data-js-field-component='true'>  <input type='checkbox' data-js-field='true' name='acceptprivacypolicy' class=' c-check-field__input' id='acceptprivacypolicy-095078' required='required' aria-required='true' data-error-required='<span data-js-error-message class="h-show-for-sr">Error : 同意隱私權及使用條款 is required</span>您必須同意我們的隱私權及使用條款' />  <label class=' c-check-field__label' for='acceptprivacypolicy-095078'><!-- dwMarker="content" dwContentID="16d3021ca14e0574cb1e135bac" -->我同意接受<a target="_blank" href="#">隱私權政策</a>.
-						 <span class="h-text-size-14" aria-hidden="true">*</span></label>   </div>    
-						 <div class="c-captcha c-field  c-captcha__invisible m-v3"> <div data-component='global/ReCaptchaV3' data-component-options='{"sitekey":"6Lf9kwkeAAAAAAciU_kVf3CU3ckeksD5GEXMlBSm","invisible":true}'></div>  <div class="c-captcha__text">此頁面受到reCAPTCHA 保護,並適用 Google <a href="#" target="_blank" rel="noopener">隱私政策</a> 及 <a href="#" target="_blank" rel="noopener">服務條款</a></div>  </div>         <div class='m-autosize c-field' data-js-field-component='true'>  
-						 <button type='submit' class='m-autosize m-secondary c-button' disabled='disabled' name='submit' aria-label='送出'>送出</button>   </div>      <div class='h-hidden c-field c-text-field' data-component='global/TextField' data-component-options='{}' data-js-field-component='true'>  <input type='hidden' data-js-field='true' name='location' class=' c-text-field__input' placeholder=' ' aria-label=' ' value='Footer' />   </div>     <div class='h-hidden c-field c-text-field' data-component='global/TextField' data-component-options='{}' data-js-field-component='true'> 
-						 <input type='hidden' data-js-field='true' name='successcontent' class=' c-text-field__input' placeholder=' ' aria-label=' ' value='newsletter-signup-confirmation' />   </div>   
-						 <div class='m-autosize c-field h-hidden' data-js-field-component='true'>  <button type='submit' class='m-autosize m-loading c-button'  disabled='disabled' name='submit2' aria-label='Sign up'>訂閱電子報</button>   </div>      <div class='h-hidden c-field c-text-field' data-component='global/TextField' data-component-options='{}' data-js-field-component='true'> 
-						 <input type='hidden' data-js-field='true' name='registrationsource' class=' c-text-field__input' placeholder=' ' aria-label=' ' />   </div>     <div class='h-hidden c-field c-text-field' data-component='global/TextField' data-component-options='{}' data-js-field-component='true'>  <input type='hidden' data-js-field='true' name='registrationsubsource' class=' c-text-field__input' placeholder=' ' aria-label=' ' />   </div>   
-						 <div class='h-hidden c-field c-text-field' data-component='global/TextField' data-component-options='{}' data-js-field-component='true'> 
-						 <input type='hidden' data-js-field='true' name='subjectarea' class=' c-text-field__input' placeholder=' ' aria-label=' ' />   </div>  
-						 <input type="hidden" name="form_id" value="newslettersignup">  
-						 </form> 
-				</div> 
-			</div>  
+    <!-- 官網獨家優惠 -->
+    <div id="exclusive-offers" class="alert alert-secondary mt-4">
+        <div class="container">
+            <strong>官網獨家</strong> 限定組合 <a href="#exclusive-offers" class="alert-link">Just for you</a>
         </div>
-                    <div class="l-footer__contacts">
-                        <span class="l-footer__contacts-title h-show-for-large" >聯繫我們</span>
-<span class="l-footer__contacts-description h-show-for-large" >電話 0800 881 789<br>
-	週一至週五9:30~18:00 <br><!--<a class="l-footer__links-link"  href="https://www.yslbeauty.com.tw/customer-service/customer-service-contact-us.html">email us</a>--></span>
-	<a class="l-footer__contacts-description h-show-for-large"  href="#" target="_blank">Line 線上客服</a>
-	
-<span class="l-footer__contacts-title h-hide-for-large" >聯繫我們<br>
-	週一至週五9:30~18:00</span>
-<div class="l-footer__contacts-description h-hide-for-large" >
-	<a class="l-footer__contacts-link m-phone" href="tel:0800881789" >電話 0800 881 789</a>
-	<a class="l-footer__contacts-link m-line" href="#" >Line 線上客服</a>
-</div> 
-                    </div>
-</form>
+    </div>
 
-      </div>
-      </div>
-</div>
+    <!-- 限定組合產品 -->
+    <div class="container my-4">
+        <div class="product-grid">
+            <div class="product-item">
+                <img src="images/2.jpg" alt="組合商品 1">
+                <h5>粉氣墊+午夜粉底+水唇膏</h5>
+                <p>NT$7,000</p>
+                <a href="#" class="btn btn-dark">選購這個組合</a>
+            </div>
+            <div class="product-item">
+                <img src="images/1.jpg" alt="組合商品 2">
+                <h5>皮革氣墊+午夜粉底+水唇膏</h5>
+                <p>NT$7,000</p>
+                <a href="#" class="btn btn-dark">選購這個組合</a>
+            </div>
+            <div class="product-item">
+                <img src="images/3.jpg" alt="組合商品 3">
+                <h5>精華水氣墊 高訂金釦+午夜粉底+水唇膏</h5>
+                <p>NT$7,000</p>
+                <a href="#" class="btn btn-dark">選購這個組合</a>
+            </div>
+            <div class="product-item">
+                <img src="images/4.jpg" alt="組合商品 4">
+                <h5>精華水氣墊 高訂金釦+午夜粉底+水唇膏</h5>
+                <p>NT$7,000</p>
+                <a href="#" class="btn btn-dark">選購這個組合</a>
+            </div>
+        </div>
+    </div>
 
-</body>
-</html>
+    <!-- 廣告圖片 -->
+    <div class="container-fluid px-0">
+        <img src="images/34.jpg" alt="廣告圖片 1" class="w-100 mb-3">
+        <img src="images/35.jpg" alt="廣告圖片 2" class="w-100">
+    </div>
+
+    <!-- 新品上市 - 唇彩系列 -->
+    <div id="lipstick-section" class="alert alert-danger mt-4">
+        <div class="container">
+            <strong>新品上市</strong> 熱銷唇彩系列 <a href="#" class="alert-link">Just for you</a>
+        </div>
+    </div>
+
+    <!-- 唇彩產品展示 -->
+    <div class="container my-4">
+        <div class="lipstick-container">
+            <div class="lipstick-item">
+                <img src="images/a.jpg" alt="唇彩產品 1">
+                <div class="lipstick-overlay">加入購物車</div>
+            </div>
+            <div class="lipstick-item">
+                <img src="images/b.jpg" alt="唇彩產品 2">
+                <div class="lipstick-overlay">加入購物車</div>
+            </div>
+            <div class="lipstick-item">
+                <img src="images/c.jpg" alt="唇彩產品 3">
+                <div class="lipstick-overlay">加入購物車</div>
+            </div>
+            <div class="lipstick-item">
+                <img src="images/d.jpg" alt="唇彩產品 4">
+                <div class="lipstick-overlay">加入購物車</div>
+            </div>
+            <div class="lipstick-item">
+                <img src="images/e.jpg" alt="唇彩產品 5">
+                <div class="lipstick-overlay">加入購物車</div>
+            </div>
+            <div class="lipstick-item">
+                <img src="images/f.jpg" alt="唇彩產品 6">
+                <div class="lipstick-overlay">加入購物車</div>
+            </div>
+            <div class="lipstick-item">
+                <img src="images/g.jpg" alt="唇彩產品 7">
+                <div class="lipstick-overlay">加入購物車</div>
+            </div>
+            <div class="lipstick-item">
+                <img src="images/i.jpg" alt="唇彩產品 8">
+                <div class="lipstick-overlay">加入購物車</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 廣告圖片 -->
+    <div class="container-fluid px-0 my-4">
+        <img src="images/12.jpg" alt="廣告圖片 3" class="w-100">
+    </div>
+
+    <!-- 香水熱銷推薦 -->
+    <div id="perfume-section" class="alert alert-primary mt-4">
+        <div class="container">
+            <strong>香水熱銷推薦</strong> 專為您精選 <a href="#" class="alert-link">Just for you</a>
+        </div>
+    </div>
+
+    <!-- 香水產品展示 -->
+    <div class="container my-4">
+        <div class="perfume-container">
+            <div class="perfume-item">
+                <img src="images/w.jpg" alt="香水產品 1">
+                <div class="perfume-overlay">add to the cart</div>
+            </div>
+            <div class="perfume-item">
+                <img src="images/q.jpg" alt="香水產品 2">
+                <div class="perfume-overlay">add to the cart</div>
+            </div>
+            <div class="perfume-item">
+                <img src="images/r.jpg" alt="香水產品 3">
+                <div class="perfume-overlay">add to the cart</div>
+            </div>
+            <div class="perfume-item">
+                <img src="images/s.jpg" alt="香水產品 4">
+                <div class="perfume-overlay">add to the cart</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 廣告圖片 -->
+    <div class="container-fluid px-0 my-4">
+        <img src="images/33.jpg" alt="廣告圖片 4" class="w-100">
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-5">
+        <div class="container">
+            <!-- 服務項目 -->
+            <div class="service-items mb-4">
+                <div class="service-item">
+                    <img src="https://www.yslbeauty.com.tw/on/demandware.static/-/Sites-ysl-tw-ng-Library/default/dwd2c0fa11/images/demo/freeship-svc1.png" alt="送貨免運">
+                    <span>送貨免運<br>單筆訂單達NT.$2,000元以上享超取/<br>宅配免運費</span>
+                </div>
+                <div class="service-item">
+                    <img src="https://www.yslbeauty.com.tw/on/demandware.static/-/Sites-ysl-tw-ng-Library/default/dw9bc13614/images/demo/excluoffer-svc2.png" alt="獨家優惠">
+                    <span>獨家優惠<br>不定期推出線上獨家活動記得隨時關<br>注官網把握機會!</span>
+                </div>
+                <div class="service-item">
+                    <img src="https://www.yslbeauty.com.tw/on/demandware.static/-/Sites-ysl-tw-ng-Library/default/dw7f2f065c/images/demo/freesamp-svc3.png" alt="任選試用">
+                    <span>任選試用，YSL美麗體驗<br>單筆訂單(不限金額)皆<br>可任選商品試用包，全方位體驗YSL美麗</span>
+                </div>
+                <div class="service-item">
+                    <img src="https://www.yslbeauty.com.tw/on/demandware.static/-/Sites-ysl-tw-ng-Library/default/dwfb773c39/images/demo/return-svc4.png" alt="安全支付">
+                    <span>安全支付<br>採用高規格安全防護機制，確保您的每一<br>筆訂單安全安心</span>
+                </div>
+            </div>
+
+				<div class="row">
+				  <div class="col-sm-6">
+
+					<div class="mb-1 row">
+					  <label for="email" class="col-sm-3 col-form-label">Email:</label>
+					  <div class="col-sm-5">
+						<input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+					  </div>
+					</div>
+
+					<div class="mb-1 row">
+					  <label for="pwd" class="col-sm-3 col-form-label">Password:</label>
+					  <div class="col-sm-5">
+						<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+					  </div>
+					</div>
+					<br>
+
+					<div class="form-check mb-3">
+					  <label class="form-check-label">
+						<input class="form-check-input" type="checkbox" name="remember">*我同意接受隱私權政策.*
+					  </label>
+					</div>
+
+					<div class="col-sm-6">
+					  <div class="image-item">
+						<img src="images/5.jpg" alt="Avatar" class="image">
+					  </div>
+					</div>
+				  </div>
+
+				  <div class="col-sm-6">
+					<div class="l-footer__content-section">
+					  <div class="l-footer__newsletter">
+						<div class="c-simple-signup">
+						  <h2 class='c-simple-signup__title c-form__title'>訂閱電子報</h2>
+						  <div class="c-simple-signup__form">
+							<form action="/on/demandware.store/Sites-ysl-tw-ng-Site/zh_TW/Newsletter-SignUpSubmit" method="POST"
+							  name="newslettersignup" data-component="global/Form" class="c-form"
+							  data-component-options="{&quot;successModal&quot;:{&quot;classNames&quot;:{&quot;container&quot;:[&quot;m-medium&quot;]}},&quot;events&quot;:{&quot;success&quot;:&quot;signup.success&quot;,&quot;customSuccess&quot;:&quot;toaster.close&quot;},&quot;captcha&quot;:{&quot;invisible&quot;:true},&quot;errorMessages&quot;:{&quot;captchaRequired&quot;:&quot;請確認你輸入了正確的安全驗證資料&quot;},&quot;text&quot;:{&quot;accessibility&quot;:{&quot;processingStatusMessage&quot;:&quot;Newsletter signing up is in progress&quot;,&quot;finishedStatusMessage&quot;:&quot;Newsletter signing up has been finished&quot;},&quot;offlineErrorMessage&quot;:&quot;Network error. Please check your Internet connection and try again.&quot;}}"
+							  data-analytics="{&quot;category&quot;:&quot;registration&quot;,&quot;action&quot;:&quot;newsletter&quot;,&quot;label&quot;:&quot;footer&quot;,&quot;extraData&quot;:{&quot;event_name&quot;:&quot;newsletter_registration&quot;,&quot;referral&quot;:&quot;footer&quot;}}"
+							  data-has-active-csrf="true">
+
+							  <div class="c-form__row m-group" data-js-group="">
+								<div data-component='global/TextField' data-component-options='{}'
+								  class='c-field c-text-field m-float' data-js-field-component='true'>
+								  <input type='email' autocomplete='email' data-js-field='true' name='email'
+									class='c-text-field__input' id='email-056024' placeholder=' '
+									pattern='^[a-zA-Z0-9_\-\.\+]{1,}@([\da-zA-Z-]{1,}\.){1,}[\da-zA-Z-]{2,20}$'
+									data-error-pattern='<span data-js-error-message class="h-show-for-sr">Error : </span>電子郵件格式不符'
+									data-error-format='<span data-js-error-message class="h-show-for-sr">Error : </span>電子郵件格式不符'
+									required='required' aria-required='true'
+									data-error-required='<span data-js-error-message class="h-show-for-sr">Error : 電子郵件 is required</span>請輸入電子郵件'
+									data-js-anchor='true' />
+								  <label class='m-float c-text-field__label' for='email-056024'>請輸入您的電子郵件
+									<span class="h-text-size-14" aria-hidden="true">*</span></label>
+								</div>
+							  </div>
+
+							  <div data-component='global/TextField' data-component-options='{}'
+								class='c-field c-text-field m-float h-hidden' data-js-field-component='true'>
+								<input type='tel' autocomplete='mobile tel-national' data-js-field='true' name='phonemobile'
+								  class='c-text-field__input' id='phonemobile-051626' placeholder=' ' pattern='^\d{10}$'
+								  data-error-pattern='<span data-js-error-message class="h-show-for-sr">Error : </span>請輸入10位數字的行動電話號碼'
+								  data-error-format='<span data-js-error-message class="h-show-for-sr">Error : </span>請輸入有效的行動電話' />
+								<label class='m-float c-text-field__label' for='phonemobile-051626'>請輸入10位數字的行動電話號碼</label>
+							  </div>
+
+							  <div class="c-form__row-title c-simple-signup__group-label">
+								forms-privacypolicy-signupgroup-label
+							  </div>
+
+							  <div class="m-fullwidth c-form__row m-group" data-js-group="">
+								<div data-component='global/AbstractField' data-component-options='{}'
+								  class='c-field c-check-field m-checkbox h-hidden' data-js-field-component='true'>
+								  <input type='checkbox' data-js-field='true' name='acceptemailsignup' class='c-check-field__input'
+									id='acceptemailsignup-017896' required='required' aria-required='true'
+									data-error-required='<span data-js-error-message class="h-show-for-sr">Error : acceptemailsignup is required</span>請選擇'
+									checked='true' value='on' />
+								  <label class='c-check-field__label' for='acceptemailsignup-017896'>forms-emailsignup-label<span
+									  class="h-text-size-14" aria-hidden="true">*</span></label>
+								</div>
+
+								<div class='c-simple-signup__contact-preference c-field c-check-field m-checkbox m-separator h-hidden'
+								  data-component='global/AbstractField' data-component-options='{}' data-js-field-component='true'>
+								  <input type='checkbox' data-js-field='true' name='acceptmobilesignup' class='c-check-field__input'
+									id='acceptmobilesignup-039054' />
+								  <label class='c-check-field__label' for='acceptmobilesignup-039054'>forms-mobilesignup-label</label>
+								</div>
+							  </div>
+
+							  <div data-component='global/AbstractField' data-component-options='{}'
+								class='c-field c-check-field m-checkbox' data-js-field-component='true'>
+								<input type='checkbox' data-js-field='true' name='acceptprivacypolicy' class='c-check-field__input'
+								  id='acceptprivacypolicy-095078' required='required' aria-required='true'
+								  data-error-required='<span data-js-error-message class="h-show-for-sr">Error : 同意隱私權及使用條款 is required</span>您必須同意我們的隱私權及使用條款' />
+								<label class='c-check-field__label' for='acceptprivacypolicy-095078'>
+								  <!-- dwMarker="content" dwContentID="16d3021ca14e0574cb1e135bac" -->
+								  我同意接受<a target="_blank" href="#">隱私權政策</a>.
+								  <span class="h-text-size-14" aria-hidden="true">*</span>
+								</label>
+							  </div>
+
+							  <div class="c-captcha c-field c-captcha__invisible m-v3">
+								<div data-component='global/ReCaptchaV3'
+								  data-component-options='{"sitekey":"6Lf9kwkeAAAAAAciU_kVf3CU3ckeksD5GEXMlBSm","invisible":true}'>
+								</div>
+								<div class="c-captcha__text">此頁面受到reCAPTCHA 保護,並適用 Google
+								  <a href="#" target="_blank" rel="noopener">隱私政策</a> 及
+								  <a href="#" target="_blank" rel="noopener">服務條款</a>
+								</div>
+							  </div>
+
+							  <div class='m-autosize c-field' data-js-field-component='true'>
+								<button type='submit' class='m-autosize m-secondary c-button' name='submit'
+								  aria-label='送出'>送出</button>
+							  </div>
+
+							  <div class='h-hidden c-field c-text-field' data-component='global/TextField'
+								data-component-options='{}' data-js-field-component='true'>
+								<input type='hidden' data-js-field='true' name='location' class='c-text-field__input' placeholder=' '
+								  aria-label=' ' value='Footer' />
+							  </div>
+
+							  <div class='h-hidden c-field c-text-field' data-component='global/TextField'
+								data-component-options='{}' data-js-field-component='true'>
+								<input type='hidden' data-js-field='true' name='successcontent' class='c-text-field__input'
+								  placeholder=' ' aria-label=' ' value='newsletter-signup-confirmation' />
+							  </div>
+
+							  <div class='m-autosize c-field h-hidden' data-js-field-component='true'>
+								<button type='submit' class='m-autosize m-loading c-button' name='submit2'
+								  aria-label='Sign up'>訂閱電子報</button>
+							  </div>
+
+							  <div class='h-hidden c-field c-text-field' data-component='global/TextField'
+								data-component-options='{}' data-js-field-component='true'>
+								<input type='hidden' data-js-field='true' name='registrationsource' class='c-text-field__input'
+								  placeholder=' ' aria-label=' ' />
+							  </div>
+
+							  <div class='h-hidden c-field c-text-field' data-component='global/TextField'
+								data-component-options='{}' data-js-field-component='true'>
+								<input type='hidden' data-js-field='true' name='registrationsubsource' class='c-text-field__input'
+								  placeholder=' ' aria-label=' ' />
+							  </div>
+
+							  <div class='h-hidden c-field c-text-field' data-component='global/TextField'
+								data-component-options='{}' data-js-field-component='true'>
+								<input type='hidden' data-js-field='true' name='subjectarea' class='c-text-field__input' placeholder=' '
+								  aria-label=' ' />
+							  </div>
+
+							  <input type="hidden" name="form_id" value="newslettersignup">
+							</form>
+						  </div>
+						</div>
+					  </div>
+
+					  <div class="l-footer__contacts">
+						<span class="l-footer__contacts-title h-show-for-large">聯繫我們</span>
+						<span class="l-footer__contacts-description h-show-for-large">
+						  電話 0800 881 789<br>
+						  週一至週五9:30~18:00 <br>
+						  <!--<a class="l-footer__links-link"  href="https://www.yslbeauty.com.tw/customer-service/customer-service-contact-us.html">email us</a>-->
+						</span>
+						<a class="l-footer__contacts-description h-show-for-large" href="#" target="_blank">Line 線上客服</a>
+
+						<span class="l-footer__contacts-title h-hide-for-large">
+						  聯繫我們<br>週一至週五9:30~18:00
+						</span>
+
+						<div class="l-footer__contacts-description h-hide-for-large">
+						  <a class="l-footer__contacts-link m-phone" href="tel:0800881789">電話 0800 881 789</a>
+						  <a class="l-footer__contacts-link m-line" href="#">Line 線上客服</a>
+						</div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+
+
+				<div class="text-center mt-4 pt-4 border-top">
+				  <p>&copy; 2024 Saint Laurent. All rights reserved.</p>
+				  <p class="small text-muted">
+					本作品僅作為個人練習與作品集展示用途，所有圖片與商標版權皆屬 Saint Laurent 所有，無任何商業用途。
+				  </p>
+				  <p class="small text-muted">
+					This work is for personal practice and portfolio display only.  
+					All images and trademarks belong to Saint Laurent and are not used for any commercial purposes.
+				  </p>
+				</div>
+
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownSubmenus = document.querySelectorAll('.dropdown-submenu');
+            
+            dropdownSubmenus.forEach(function(submenu) {
+                submenu.addEventListener('mouseenter', function() {
+                    const submenuDropdown = this.querySelector('.dropdown-menu');
+                    if (submenuDropdown) {
+                        submenuDropdown.style.display = 'block';
+                    }
+                });
+                
+                submenu.addEventListener('mouseleave', function() {
+                    const submenuDropdown = this.querySelector('.dropdown-menu');
+                    if (submenuDropdown) {
+                        submenuDropdown.style.display = 'none';
+                    }
+                });
+            });
