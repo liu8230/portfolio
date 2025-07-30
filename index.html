@@ -294,7 +294,39 @@
         .bg-black {
             background-color: #000 !important;
         }
-		
+
+	            /* 廣告圖片容器樣式 */
+        .ad-container {
+            margin: 20px 0;
+        }
+        
+        .ad-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .ad-image:hover {
+            transform: scale(1.02);
+        }
+        
+        /* 確保圖片在小螢幕上有適當間距 */
+        @media (max-width: 767px) {
+            .ad-container .col-md-6:first-child {
+                margin-bottom: 15px;
+            }
+        }
+        
+        /* 在大螢幕上添加一些間距 */
+        @media (min-width: 768px) {
+            .ad-container .col-md-6:first-child {
+                padding-right: 10px;
+            }
+            .ad-container .col-md-6:last-child {
+                padding-left: 10px;
+            }
+        }
 		
     </style>
 </head>
@@ -502,10 +534,16 @@
     </div>
 
     <!-- 廣告圖片 -->
-    <div class="container-fluid px-0">
-        <img src="images/34.jpg" alt="廣告圖片 1" class="w-100 mb-3">
-        <img src="images/35.jpg" alt="廣告圖片 2" class="w-100">
-    </div>
+	<div class="container-fluid px-3">
+	    <div class="row">
+	        <div class="col-md-6 col-12 mb-3 mb-md-0">
+	            <img src="images/34.jpg" alt="廣告圖片 1" class="w-100">
+	        </div>
+	        <div class="col-md-6 col-12">
+	            <img src="images/35.jpg" alt="廣告圖片 2" class="w-100">
+	        </div>
+	    </div>
+	</div>
 
     <!-- 新品上市 - 唇彩系列 -->
     <div id="lipstick-section" class="alert alert-danger mt-4">
