@@ -295,204 +295,6 @@
             background-color: #000 !important;
         }
 
-/* 確保圖片完整顯示的雜誌風格廣告 - 最終版 */
-.magazine-ad-container {
-    position: relative;
-    margin: 40px auto;
-    max-width: 1200px;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #dee2e6 100%);
-    padding: 80px 60px;
-    border-radius: 25px;
-    min-height: 450px;
-    overflow: visible; /* 重要：讓圖片可以完整顯示 */
-    transform-style: preserve-3d;
-}
-
-.magazine-ad-container::before {
-    content: '';
-    position: absolute;
-    top: -20%;
-    left: -20%;
-    width: 140%;
-    height: 140%;
-    background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
-    animation: rotate 30s linear infinite;
-    z-index: 0;
-}
-
-/* 圖片包裝器 - 確保完整顯示 */
-.mag-img-wrapper {
-    position: absolute;
-    transform-style: preserve-3d;
-    perspective: 1000px;
-}
-
-.mag-img-wrapper.img1-wrapper {
-    top: 20px;
-    right: 5%;
-    width: 35%;
-    height: 280px;
-}
-
-.mag-img-wrapper.img2-wrapper {
-    bottom: 20px;
-    left: 5%;
-    width: 38%;
-    height: 300px;
-}
-
-.mag-img1,
-.mag-img2 {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 15px;
-    box-shadow: 
-        0 20px 40px rgba(0,0,0,0.2),
-        0 8px 16px rgba(0,0,0,0.1);
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
-    z-index: 2;
-    display: block;
-}
-
-/* 輕微的 3D 效果 - 安全角度 */
-.mag-img1 {
-    transform: rotateY(-4deg) rotateX(1deg);
-}
-
-.mag-img2 {
-    transform: rotateY(6deg) rotateX(-1deg);
-}
-
-/* Hover 效果 */
-.mag-img-wrapper:hover .mag-img1,
-.mag-img-wrapper:hover .mag-img2 {
-    transform: rotateY(0deg) rotateX(0deg) scale(1.02);
-    box-shadow: 
-        0 30px 60px rgba(0,0,0,0.3),
-        0 15px 30px rgba(0,0,0,0.15);
-    z-index: 3;
-}
-
-/* 品牌裝飾 */
-.brand-accent {
-    position: absolute;
-    top: 20px;
-    left: 30px;
-    width: 50px;
-    height: 3px;
-    background: linear-gradient(90deg, #d4af37, #ffd700);
-    border-radius: 2px;
-    z-index: 2;
-}
-
-.brand-accent::after {
-    content: 'YSL EXCLUSIVE';
-    position: absolute;
-    top: 12px;
-    left: 0;
-    font-size: 10px;
-    font-weight: 600;
-    color: #666;
-    letter-spacing: 1.5px;
-}
-
-/* 大螢幕優化 */
-@media (min-width: 1200px) {
-    .magazine-ad-container {
-        padding: 100px 80px;
-        min-height: 500px;
-    }
-    
-    .mag-img-wrapper.img1-wrapper {
-        width: 32%;
-        height: 320px;
-        top: 30px;
-    }
-    
-    .mag-img-wrapper.img2-wrapper {
-        width: 35%;
-        height: 340px;
-        bottom: 30px;
-    }
-}
-
-/* 平板優化 */
-@media (max-width: 992px) and (min-width: 769px) {
-    .magazine-ad-container {
-        padding: 60px 40px;
-        min-height: 400px;
-        margin: 30px auto;
-    }
-    
-    .mag-img-wrapper.img1-wrapper,
-    .mag-img-wrapper.img2-wrapper {
-        width: 40%;
-        height: 250px;
-    }
-    
-    .mag-img-wrapper.img1-wrapper {
-        top: 15px;
-        right: 3%;
-    }
-    
-    .mag-img-wrapper.img2-wrapper {
-        bottom: 15px;
-        left: 3%;
-    }
-}
-
-/* 手機版 - 完全堆疊佈局 */
-@media (max-width: 768px) {
-    .magazine-ad-container {
-        margin: 20px auto;
-        padding: 30px 20px;
-        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-        border-radius: 15px;
-        min-height: auto;
-        overflow: hidden;
-    }
-    
-    .mag-img-wrapper {
-        position: static !important;
-        width: 100% !important;
-        height: auto !important;
-        margin-bottom: 20px;
-    }
-    
-    .mag-img1,
-    .mag-img2 {
-        width: 100%;
-        height: 200px;
-        transform: none !important;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        border-radius: 12px;
-    }
-    
-    .mag-img-wrapper:hover .mag-img1,
-    .mag-img-wrapper:hover .mag-img2 {
-        transform: scale(1.02) !important;
-    }
-    
-    .mag-img-wrapper.img2-wrapper {
-        margin-bottom: 0;
-    }
-    
-    .magazine-ad-container::before {
-        display: none;
-    }
-    
-    .brand-accent {
-        display: none;
-    }
-}
-
-@keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-		    
     </style>
 </head>
 <body>
@@ -698,18 +500,19 @@
         </div>
     </div>
 
-	<!-- 廣告圖片 - 確保完整顯示版本 -->
-	<div class="magazine-ad-container">
-	    <div class="brand-accent"></div>
-	    
-	    <div class="mag-img-wrapper img1-wrapper">
-	        <img src="images/34.jpg" alt="廣告圖片 1" class="mag-img1">
-	    </div>
-	    
-	    <div class="mag-img-wrapper img2-wrapper">
-	        <img src="images/35.jpg" alt="廣告圖片 2" class="mag-img2">
-	    </div>
-	</div>
+<!-- 廣告圖片 - 錯位重疊設計 -->
+<div class="container-fluid px-0">
+    <div style="position: relative; min-height: 600px; margin: 40px 0;">
+        <img src="images/34.jpg" alt="廣告圖片 1" 
+             style="position: absolute; top: 0; right: 0; width: 60%; z-index: 2; 
+                    border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
+                    transition: transform 0.3s ease;">
+        <img src="images/35.jpg" alt="廣告圖片 2" 
+             style="position: absolute; bottom: 0; left: 0; width: 65%; z-index: 1; 
+                    border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
+                    transition: transform 0.3s ease;">
+    </div>
+</div>
 
     <!-- 新品上市 - 唇彩系列 -->
     <div id="lipstick-section" class="alert alert-danger mt-4">
