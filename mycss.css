@@ -130,3 +130,417 @@ button {
   background-color: #ffffff; /* 設定按鈕的背景色 */
   color: #000000; /* 設定按鈕的文字顏色 */
 }
+
+
+        /* ===== 基本設定 ===== */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* ===== 輪播優化 ===== */
+        .carousel-inner {
+            text-align: center;
+        }
+
+        .carousel-inner .carousel-item img {
+            width: 100%;
+            height: 400px; /* 調整回適當高度 */
+            object-fit: contain; /* 改為 contain 以完整顯示圖片 */
+            object-position: center;
+            display: block;
+            margin: 0 auto;
+            background-color: #f8f9fa; /* 加上背景色，讓白邊更自然 */
+        }
+
+        /* ===== 導航欄優化 ===== */
+        .navbar-nav li:hover > ul.dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-submenu {
+            position: relative;
+        }
+
+        .dropdown-submenu > .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -3px;
+        }
+
+        /* ===== 服務項目區塊 ===== */
+        .service-items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .service-item {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            max-width: 250px;
+        }
+
+        .service-item img {
+            width: 75px;
+            height: 75px;
+            margin-bottom: 10px;
+        }
+
+        .service-item span {
+            display: block;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        /* ===== 產品展示區塊 ===== */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .product-item {
+            text-align: center;
+            padding: 15px;
+        }
+
+        .product-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .product-item h5 {
+            margin: 15px 0 10px;
+            font-size: 16px;
+        }
+
+        .product-item p {
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        /* ===== 唇彩系列 hover 效果 ===== */
+        .lipstick-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .lipstick-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .lipstick-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: opacity 0.5s ease;
+        }
+
+        .lipstick-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #000;
+            color: white;
+            padding: 10px 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            border-radius: 4px;
+        }
+
+        .lipstick-item:hover img {
+            opacity: 0.3;
+        }
+
+        .lipstick-item:hover .lipstick-overlay {
+            opacity: 1;
+        }
+
+        /* ===== 香水區塊 ===== */
+        .perfume-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .perfume-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .perfume-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: opacity 0.5s ease;
+        }
+
+        .perfume-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .perfume-item:hover .perfume-overlay {
+            opacity: 1;
+        }
+
+        /* ===== Footer 優化 ===== */
+        .footer-content {
+            padding: 40px 0;
+        }
+
+        .footer-form {
+            max-width: 500px;
+        }
+
+        /* ===== 響應式設計 ===== */
+        @media (max-width: 992px) {
+            .carousel-inner .carousel-item img {
+                height: 350px; /* 中等螢幕高度 */
+            }
+            
+            .service-items {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .service-item {
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* 輪播高度調整 */
+            .carousel-inner .carousel-item img {
+                height: 300px; /* 手機版適當高度 */
+            }
+
+            /* 導航欄調整 */
+            .navbar-nav .nav-link {
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+
+            /* 多層下拉在手機上簡化 */
+            .dropdown-submenu > .dropdown-menu {
+                position: static;
+                left: 0;
+                margin-top: 0;
+                box-shadow: none;
+                border: none;
+                background-color: #f8f9fa;
+            }
+
+            /* 產品網格調整 */
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 15px;
+            }
+
+            .lipstick-container,
+            .perfume-container {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 10px;
+            }
+
+            .lipstick-item img,
+            .perfume-item img {
+                height: 200px;
+            }
+
+            /* Footer 表單調整 */
+            .footer-form {
+                margin-top: 20px;
+            }
+
+            /* 按鈕大小調整 */
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .carousel-inner .carousel-item img {
+                height: 250px; /* 小螢幕適當高度 */
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lipstick-container,
+            .perfume-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .service-item {
+                min-width: 100%;
+            }
+        }
+
+        /* ===== 原有樣式保持 ===== */
+        .alert-dark {
+            background-color: #666699;
+            color: white;
+        }
+
+        .bg-black {
+            background-color: #000 !important;
+        }
+
+/* === 廣告圖片高級錯位設計 === */
+.ad-hero {
+  position: relative;
+  min-height: 600px;
+  margin: 60px 0;
+}
+
+/* 圖片容器 */
+.ad-img-wrapper {
+  position: absolute;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  animation: fadeSlideUp 1s ease both;
+}
+
+/* 上層與下層位置 */
+.ad-hero .img-top {
+  top: 0;
+  right: 0;
+  width: 60%;
+  z-index: 2;
+}
+
+.ad-hero .img-bottom {
+  bottom: 0;
+  left: 0;
+  width: 65%;
+  z-index: 1;
+  animation-delay: 0.2s;
+}
+
+/* 圖片本身 */
+.ad-img-wrapper img {
+  width: 100%;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.ad-img-wrapper:hover img {
+  transform: scale(1.05);
+}
+
+/* 半透明漸層遮罩 + 文字 */
+.ad-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0));
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.ad-overlay h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+}
+
+.ad-overlay p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.ad-btn {
+  background: #fff;
+  color: #000;
+  padding: 10px 24px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.ad-btn:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* 進場動畫 */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 平板適配 */
+@media (max-width: 992px) {
+  .ad-hero .img-top { width: 75%; }
+  .ad-hero .img-bottom { width: 80%; }
+}
+
+/* 手機適配 - 改為上下堆疊 */
+@media (max-width: 576px) {
+  .ad-hero {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-height: auto;
+  }
+
+  .ad-img-wrapper {
+    position: static;
+    width: 90%;
+    margin: 0 auto;
+    animation: fadeSlideUp 1s ease both;
+  }
+
+  .ad-overlay {
+    justify-content: center;
+    padding: 30px 15px;
+  }
+
+  .ad-overlay h2 {
+    font-size: 1.5rem;
+  }
+}
