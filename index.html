@@ -295,263 +295,144 @@
             background-color: #000 !important;
         }
 
-       /* 雜誌風格廣告圖片樣式 */
-        .magazine-ad-container {
-            position: relative;
-            margin: 80px 0;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #dee2e6 100%);
-            padding: 80px 40px;
-            border-radius: 30px;
-            min-height: 600px;
-            overflow: hidden;
-        }
-        
-        /* 添加一些裝飾性元素 */
-        .magazine-ad-container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-            z-index: 0;
-        }
-        
-        .mag-img1 {
-            position: absolute;
-            top: 40px;
-            right: 8%;
-            width: 42%;
-            border-radius: 20px;
-            box-shadow: 
-                0 30px 60px rgba(0,0,0,0.25),
-                0 10px 20px rgba(0,0,0,0.1);
-            transform: perspective(1200px) rotateY(-12deg) rotateX(2deg);
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
-            z-index: 2;
-            overflow: hidden;
-        }
-        
-        .mag-img2 {
-            position: absolute;
-            bottom: 40px;
-            left: 8%;
-            width: 45%;
-            border-radius: 20px;
-            box-shadow: 
-                0 35px 70px rgba(0,0,0,0.3),
-                0 15px 25px rgba(0,0,0,0.15);
-            transform: perspective(1200px) rotateY(15deg) rotateX(-2deg);
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
-            z-index: 1;
-            overflow: hidden;
-        }
-        
-        /* Hover 效果 */
-        .mag-img1:hover {
-            transform: perspective(1200px) rotateY(-3deg) rotateX(0deg) scale(1.05) translateZ(50px);
-            box-shadow: 
-                0 40px 80px rgba(0,0,0,0.35),
-                0 20px 40px rgba(0,0,0,0.15);
-            z-index: 3;
-        }
-        
-        .mag-img2:hover {
-            transform: perspective(1200px) rotateY(3deg) rotateX(0deg) scale(1.05) translateZ(50px);
-            box-shadow: 
-                0 45px 90px rgba(0,0,0,0.4),
-                0 25px 45px rgba(0,0,0,0.2);
-            z-index: 3;
-        }
-        
-        /* 圖片樣式 */
-        .magazine-ad-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-        
-        /* 添加一些光澤效果 */
-        .mag-img1::after,
-        .mag-img2::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255,255,255,0.4),
-                transparent
-            );
-            transition: left 0.5s;
-        }
-        
-        .mag-img1:hover::after,
-        .mag-img2:hover::after {
-            left: 100%;
-        }
-        
-        /* 添加品牌感的裝飾 */
-        .magazine-ad-container .brand-accent {
-            position: absolute;
-            top: 20px;
-            left: 30px;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, #d4af37, #ffd700);
-            border-radius: 2px;
-            z-index: 2;
-        }
-        
-        .magazine-ad-container .brand-accent::after {
-            content: 'YSL EXCLUSIVE';
-            position: absolute;
-            top: 15px;
-            left: 0;
-            font-size: 11px;
-            font-weight: 600;
-            color: #666;
-            letter-spacing: 2px;
-        }
-
-        /* 響應式設計 */
-        @media (max-width: 1200px) {
-            .magazine-ad-container {
-                padding: 60px 30px;
-                min-height: 500px;
-            }
-            
-            .mag-img1 {
-                width: 45%;
-                right: 5%;
-            }
-            
-            .mag-img2 {
-                width: 48%;
-                left: 5%;
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .magazine-ad-container {
-                padding: 40px 20px;
-                min-height: 450px;
-                margin: 60px 0;
-            }
-            
-            .mag-img1 {
-                width: 50%;
-                top: 30px;
-                transform: perspective(800px) rotateY(-8deg);
-            }
-            
-            .mag-img2 {
-                width: 52%;
-                bottom: 30px;
-                transform: perspective(800px) rotateY(10deg);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .magazine-ad-container {
-                position: static;
-                min-height: auto;
-                margin: 40px 0;
-                padding: 30px 20px;
-                background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-                border-radius: 20px;
-            }
-            
-            .mag-img1,
-            .mag-img2 {
-                position: static;
-                width: 100% !important;
-                margin: 0 auto 25px;
-                transform: none !important;
-                box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-                border-radius: 15px;
-            }
-            
-            .mag-img2 {
-                margin-bottom: 0;
-            }
-            
-            .magazine-ad-container::before {
-                display: none;
-            }
-            
-            .brand-accent {
-                display: none;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .magazine-ad-container {
-                margin: 30px 0;
-                padding: 20px 15px;
-                border-radius: 15px;
-            }
-            
-            .mag-img1,
-            .mag-img2 {
-                border-radius: 12px;
-                margin-bottom: 20px;
-                box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            }
-        }
-
-        /* 載入動畫 */
-        .mag-img1 {
-            animation: magazineSlideIn1 1s ease-out;
-        }
-        
-        .mag-img2 {
-            animation: magazineSlideIn2 1s ease-out 0.3s both;
-        }
-        
-        @keyframes magazineSlideIn1 {
-            from {
-                opacity: 0;
-                transform: perspective(1200px) rotateY(-30deg) rotateX(10deg) translateX(100px);
-            }
-            to {
-                opacity: 1;
-                transform: perspective(1200px) rotateY(-12deg) rotateX(2deg) translateX(0);
-            }
-        }
-        
-        @keyframes magazineSlideIn2 {
-            from {
-                opacity: 0;
-                transform: perspective(1200px) rotateY(30deg) rotateX(-10deg) translateX(-100px);
-            }
-            to {
-                opacity: 1;
-                transform: perspective(1200px) rotateY(15deg) rotateX(-2deg) translateX(0);
-            }
-        }
-        
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* 可選：添加磨砂玻璃效果 */
-        .magazine-ad-container.glass-effect {
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-        }
+	/* 雜誌風格廣告圖片樣式 */
+	.magazine-ad-container {
+	    position: relative;
+	    margin: 80px 0;
+	    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #dee2e6 100%);
+	    padding: 80px 40px;
+	    border-radius: 30px;
+	    min-height: 600px;
+	    overflow: hidden;
+	}
+	
+	.magazine-ad-container::before {
+	    content: '';
+	    position: absolute;
+	    top: -50%;
+	    left: -50%;
+	    width: 200%;
+	    height: 200%;
+	    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+	    animation: rotate 20s linear infinite;
+	    z-index: 0;
+	}
+	
+	.mag-img1 {
+	    position: absolute;
+	    top: 40px;
+	    right: 8%;
+	    width: 42%;
+	    border-radius: 20px;
+	    box-shadow: 
+	        0 30px 60px rgba(0,0,0,0.25),
+	        0 10px 20px rgba(0,0,0,0.1);
+	    transform: perspective(1200px) rotateY(-12deg) rotateX(2deg);
+	    transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+	    z-index: 2;
+	    overflow: hidden;
+	}
+	
+	.mag-img2 {
+	    position: absolute;
+	    bottom: 40px;
+	    left: 8%;
+	    width: 45%;
+	    border-radius: 20px;
+	    box-shadow: 
+	        0 35px 70px rgba(0,0,0,0.3),
+	        0 15px 25px rgba(0,0,0,0.15);
+	    transform: perspective(1200px) rotateY(15deg) rotateX(-2deg);
+	    transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+	    z-index: 1;
+	    overflow: hidden;
+	}
+	
+	/* Hover 效果 */
+	.mag-img1:hover {
+	    transform: perspective(1200px) rotateY(-3deg) rotateX(0deg) scale(1.05) translateZ(50px);
+	    box-shadow: 
+	        0 40px 80px rgba(0,0,0,0.35),
+	        0 20px 40px rgba(0,0,0,0.15);
+	    z-index: 3;
+	}
+	
+	.mag-img2:hover {
+	    transform: perspective(1200px) rotateY(3deg) rotateX(0deg) scale(1.05) translateZ(50px);
+	    box-shadow: 
+	        0 45px 90px rgba(0,0,0,0.4),
+	        0 25px 45px rgba(0,0,0,0.2);
+	    z-index: 3;
+	}
+	
+	.magazine-ad-container img {
+	    width: 100%;
+	    height: auto;
+	    display: block;
+	}
+	
+	/* 品牌裝飾 */
+	.brand-accent {
+	    position: absolute;
+	    top: 20px;
+	    left: 30px;
+	    width: 60px;
+	    height: 4px;
+	    background: linear-gradient(90deg, #d4af37, #ffd700);
+	    border-radius: 2px;
+	    z-index: 2;
+	}
+	
+	.brand-accent::after {
+	    content: 'YSL EXCLUSIVE';
+	    position: absolute;
+	    top: 15px;
+	    left: 0;
+	    font-size: 11px;
+	    font-weight: 600;
+	    color: #666;
+	    letter-spacing: 2px;
+	}
+	
+	/* 響應式設計 */
+	@media (max-width: 768px) {
+	    .magazine-ad-container {
+	        position: static;
+	        min-height: auto;
+	        margin: 40px 0;
+	        padding: 30px 20px;
+	        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+	        border-radius: 20px;
+	    }
+	    
+	    .mag-img1,
+	    .mag-img2 {
+	        position: static;
+	        width: 100% !important;
+	        margin: 0 auto 25px;
+	        transform: none !important;
+	        box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+	        border-radius: 15px;
+	    }
+	    
+	    .mag-img2 {
+	        margin-bottom: 0;
+	    }
+	    
+	    .magazine-ad-container::before {
+	        display: none;
+	    }
+	    
+	    .brand-accent {
+	        display: none;
+	    }
+	}
+	
+	@keyframes rotate {
+	    from { transform: rotate(0deg); }
+	    to { transform: rotate(360deg); }
+	}
+		    
     </style>
 </head>
 <body>
@@ -757,14 +638,12 @@
         </div>
     </div>
 
-	<!-- 廣告圖片 - 錯位重疊設計 -->
-        
-        <!-- 可選：磨砂玻璃效果版本 -->
-        <div class="magazine-ad-container glass-effect" style="margin-top: 100px;">
-            <div class="brand-accent"></div>
-            <img src="images/34.jpg" alt="廣告圖片 1" class="mag-img1">
-            <img src="images/35.jpg" alt="廣告圖片 2" class="mag-img2">
-        </div>
+	<!-- 廣告圖片 - 雜誌風格設計 -->
+	<div class="magazine-ad-container">
+	    <div class="brand-accent"></div>
+	    <img src="images/34.jpg" alt="廣告圖片 1" class="mag-img1">
+	    <img src="images/35.jpg" alt="廣告圖片 2" class="mag-img2">
+	</div>
 
     <!-- 新品上市 - 唇彩系列 -->
     <div id="lipstick-section" class="alert alert-danger mt-4">
