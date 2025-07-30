@@ -295,6 +295,133 @@
             background-color: #000 !important;
         }
 
+		/* === 廣告圖片高級錯位設計 === */
+	.ad-hero {
+	  position: relative;
+	  min-height: 600px;
+	  margin: 60px 0;
+	}
+	
+	/* 圖片容器 */
+	.ad-img-wrapper {
+	  position: absolute;
+	  overflow: hidden;
+	  border-radius: 15px;
+	  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+	  animation: fadeSlideUp 1s ease both;
+	}
+	
+	/* 上層與下層位置 */
+	.ad-hero .img-top {
+	  top: 0;
+	  right: 0;
+	  width: 60%;
+	  z-index: 2;
+	}
+	
+	.ad-hero .img-bottom {
+	  bottom: 0;
+	  left: 0;
+	  width: 65%;
+	  z-index: 1;
+	  animation-delay: 0.2s;
+	}
+	
+	/* 圖片本身 */
+	.ad-img-wrapper img {
+	  width: 100%;
+	  display: block;
+	  transition: transform 0.5s ease;
+	}
+	
+	.ad-img-wrapper:hover img {
+	  transform: scale(1.05);
+	}
+	
+	/* 半透明漸層遮罩 + 文字 */
+	.ad-overlay {
+	  position: absolute;
+	  inset: 0;
+	  background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0));
+	  color: #fff;
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	  justify-content: flex-end;
+	  padding: 40px 20px;
+	  text-align: center;
+	}
+	
+	.ad-overlay h2 {
+	  font-size: 2rem;
+	  margin-bottom: 10px;
+	  letter-spacing: 2px;
+	}
+	
+	.ad-overlay p {
+	  font-size: 1rem;
+	  margin-bottom: 20px;
+	}
+	
+	.ad-btn {
+	  background: #fff;
+	  color: #000;
+	  padding: 10px 24px;
+	  border-radius: 25px;
+	  text-decoration: none;
+	  font-weight: bold;
+	  transition: background 0.3s ease, color 0.3s ease;
+	}
+	
+	.ad-btn:hover {
+	  background: #000;
+	  color: #fff;
+	}
+	
+	/* 進場動畫 */
+	@keyframes fadeSlideUp {
+	  from {
+	    opacity: 0;
+	    transform: translateY(40px);
+	  }
+	  to {
+	    opacity: 1;
+	    transform: translateY(0);
+	  }
+	}
+	
+	/* 平板適配 */
+	@media (max-width: 992px) {
+	  .ad-hero .img-top { width: 75%; }
+	  .ad-hero .img-bottom { width: 80%; }
+	}
+	
+	/* 手機適配 - 改為上下堆疊 */
+	@media (max-width: 576px) {
+	  .ad-hero {
+	    display: flex;
+	    flex-direction: column;
+	    gap: 20px;
+	    min-height: auto;
+	  }
+	
+	  .ad-img-wrapper {
+	    position: static;
+	    width: 90%;
+	    margin: 0 auto;
+	    animation: fadeSlideUp 1s ease both;
+	  }
+	
+	  .ad-overlay {
+	    justify-content: center;
+	    padding: 30px 15px;
+	  }
+	
+	  .ad-overlay h2 {
+	    font-size: 1.5rem;
+	  }
+	}
+
     </style>
 </head>
 <body>
@@ -500,19 +627,31 @@
         </div>
     </div>
 
-<!-- 廣告圖片 - 錯位重疊設計 -->
+<!-- 廣告圖片 - 高級錯位設計 -->
 <div class="container-fluid px-0">
-    <div style="position: relative; min-height: 600px; margin: 40px 0;">
-        <img src="images/34.jpg" alt="廣告圖片 1" 
-             style="position: absolute; top: 0; right: 0; width: 60%; z-index: 2; 
-                    border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
-                    transition: transform 0.3s ease;">
-        <img src="images/35.jpg" alt="廣告圖片 2" 
-             style="position: absolute; bottom: 0; left: 0; width: 65%; z-index: 1; 
-                    border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
-                    transition: transform 0.3s ease;">
+  <div class="ad-hero">
+    <!-- 上層圖片 -->
+    <div class="ad-img-wrapper img-top">
+      <img src="images/34.jpg" alt="廣告圖片 1">
+      <div class="ad-overlay">
+        <h2>NEW COLLECTION</h2>
+        <p>奢華唇彩，優雅新上市</p>
+        <a href="#" class="ad-btn">立即選購</a>
+      </div>
     </div>
+
+    <!-- 下層圖片 -->
+    <div class="ad-img-wrapper img-bottom">
+      <img src="images/35.jpg" alt="廣告圖片 2">
+      <div class="ad-overlay">
+        <h2>LIMITED EDITION</h2>
+        <p>經典香氛，限量收藏</p>
+        <a href="#" class="ad-btn">探索更多</a>
+      </div>
+    </div>
+  </div>
 </div>
+
 
     <!-- 新品上市 - 唇彩系列 -->
     <div id="lipstick-section" class="alert alert-danger mt-4">
