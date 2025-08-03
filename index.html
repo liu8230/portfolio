@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -406,13 +405,13 @@
                 height: 250px;
             }
 
-            /* 廣告區塊改為垂直堆疊 */
+            /* 廣告區塊改為垂直堆疊，縮小間距 */
             .ad-hero {
                 display: flex;
                 flex-direction: column;
-                gap: 30px;
+                gap: 15px; /* 從 30px 改為 15px */
                 min-height: auto;
-                margin: 30px 0;
+                margin: 20px 0; /* 從 30px 改為 20px */
                 padding: 0 20px;
             }
 
@@ -425,7 +424,7 @@
 
             .ad-overlay {
                 justify-content: center;
-                padding: 30px 20px;
+                padding: 25px 20px; /* 從 30px 改為 25px */
             }
 
             .ad-overlay h2 {
@@ -468,11 +467,15 @@
                 min-width: 100%;
             }
 
-            /* 廣告區塊 */
+            /* 廣告區塊 - 縮小間距 */
             .ad-hero {
-                gap: 20px;
-                margin: 20px 0;
+                gap: 10px; /* 從 20px 改為 10px */
+                margin: 15px 0; /* 從 20px 改為 15px */
                 padding: 0 15px;
+            }
+
+            .ad-overlay {
+                padding: 20px 15px; /* 稍微縮小 padding */
             }
 
             .ad-overlay h2 {
@@ -509,25 +512,26 @@
                 min-width: 100%;
             }
 
-            /* 廣告區塊 */
+            /* 廣告區塊 - 最緊密間距 */
             .ad-hero {
-                gap: 20px;
-                margin: 20px 0;
+                gap: 8px; /* 從 20px 改為 8px */
+                margin: 10px 0; /* 從 20px 改為 10px */
                 padding: 0 10px;
             }
 
             .ad-overlay {
-                padding: 20px 15px;
+                padding: 15px 15px; /* 從 20px 改為 15px */
             }
 
             .ad-overlay h2 {
                 font-size: 1.2rem;
                 letter-spacing: 1px;
+                margin-bottom: 8px; /* 縮小間距 */
             }
 
             .ad-overlay p {
                 font-size: 0.85rem;
-                margin-bottom: 15px;
+                margin-bottom: 12px; /* 從 15px 改為 12px */
             }
 
             .ad-btn {
@@ -548,12 +552,23 @@
                 gap: 10px;
             }
 
+            .ad-hero {
+                gap: 5px; /* 更緊密的間距 */
+                margin: 8px 0;
+            }
+
+            .ad-overlay {
+                padding: 12px 10px; /* 更小的 padding */
+            }
+
             .ad-overlay h2 {
                 font-size: 1.1rem;
+                margin-bottom: 5px;
             }
 
             .ad-overlay p {
                 font-size: 0.8rem;
+                margin-bottom: 10px;
             }
         }
 
@@ -1044,6 +1059,7 @@
 </script>
 </body>
 </html>  
+
 
 
 
