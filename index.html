@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -208,90 +209,132 @@
             max-width: 500px;
         }
 
-        /* === 廣告圖片高級錯位設計 - 響應式優化版 === */
+        /* === 廣告圖片 - 方案三：藝術重疊設計 === */
         .ad-hero {
             position: relative;
-            min-height: 600px;
-            margin: 60px 0;
-            width: 100%;
-            overflow: hidden; /* 防止溢出 */
+            height: 500px;
+            margin: 50px 15px;
+            overflow: hidden;
         }
 
         /* 圖片容器 */
         .ad-img-wrapper {
             position: absolute;
             overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             animation: fadeSlideUp 1s ease both;
-            max-width: calc(100vw - 40px); /* 防止超出視窗寬度 */
         }
 
-        /* 上層與下層位置 - 桌面版 */
+        /* 左上角圖片 - 更大更突出 */
         .ad-hero .img-top {
             top: 0;
-            right: 5%;
-            width: 55%;
+            left: 0;
+            width: 75%;
+            height: 65%;
             z-index: 2;
+            transform: rotate(-2deg);
         }
 
+        /* 右下角圖片 - 稍微偏移 */
         .ad-hero .img-bottom {
             bottom: 0;
-            left: 5%;
-            width: 60%;
+            right: 0;
+            width: 75%;
+            height: 65%;
             z-index: 1;
+            transform: rotate(1deg);
             animation-delay: 0.2s;
         }
 
         /* 圖片本身 */
         .ad-img-wrapper img {
             width: 100%;
+            height: 100%;
+            object-fit: cover;
             display: block;
             transition: transform 0.5s ease;
+        }
+
+        .ad-img-wrapper:hover {
+            transform: scale(1.05) rotate(0deg) !important;
+            z-index: 3;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.4);
         }
 
         .ad-img-wrapper:hover img {
             transform: scale(1.05);
         }
 
+        /* 特殊的漸層邊框效果 */
+        .ad-hero .img-top::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            border-radius: 22px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .ad-hero .img-top:hover::before {
+            opacity: 1;
+        }
+
         /* 半透明漸層遮罩 + 文字 */
         .ad-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0));
+            background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.1));
             color: #fff;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-end;
-            padding: 40px 20px;
+            padding: 30px 20px;
             text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .ad-img-wrapper:hover .ad-overlay {
+            opacity: 1;
         }
 
         .ad-overlay h2 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin-bottom: 10px;
             letter-spacing: 2px;
+            font-weight: 300;
         }
 
         .ad-overlay p {
             font-size: 1rem;
             margin-bottom: 20px;
+            opacity: 0.9;
         }
 
         .ad-btn {
             background: #fff;
             color: #000;
-            padding: 10px 24px;
+            padding: 12px 30px;
             border-radius: 25px;
             text-decoration: none;
-            font-weight: bold;
-            transition: background 0.3s ease, color 0.3s ease;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
         }
 
         .ad-btn:hover {
-            background: #000;
+            background: transparent;
             color: #fff;
+            border-color: #fff;
+            text-decoration: none;
         }
 
         /* 進場動畫 */
@@ -310,31 +353,37 @@
         
         /* 大螢幕優化 (1400px+) */
         @media (min-width: 1400px) {
+            .ad-hero {
+                height: 600px;
+                margin: 60px 20px;
+            }
+            
             .ad-hero .img-top {
-                width: 50%;
-                right: 8%;
+                width: 70%;
+                height: 70%;
             }
             
             .ad-hero .img-bottom {
-                width: 55%;
-                left: 8%;
+                width: 70%;
+                height: 70%;
             }
         }
 
         /* 筆電螢幕 (1200px - 1399px) */
         @media (max-width: 1399px) and (min-width: 1200px) {
             .ad-hero {
-                min-height: 500px;
+                height: 550px;
+                margin: 50px 18px;
             }
             
             .ad-hero .img-top {
-                width: 58%;
-                right: 3%;
+                width: 72%;
+                height: 68%;
             }
             
             .ad-hero .img-bottom {
-                width: 63%;
-                left: 3%;
+                width: 72%;
+                height: 68%;
             }
         }
 
@@ -345,18 +394,20 @@
             }
             
             .ad-hero {
-                min-height: 450px;
-                margin: 40px 0;
+                height: 450px;
+                margin: 40px 15px;
             }
             
             .ad-hero .img-top {
-                width: 65%;
-                right: 2%;
+                width: 75%;
+                height: 65%;
+                transform: rotate(-1deg);
             }
             
             .ad-hero .img-bottom {
-                width: 70%;
-                left: 2%;
+                width: 75%;
+                height: 65%;
+                transform: rotate(0.5deg);
             }
             
             .service-items {
@@ -405,26 +456,43 @@
                 height: 250px;
             }
 
-            /* 廣告區塊改為垂直堆疊，緊密排列 */
+            /* 廣告區塊改為垂直堆疊，但保持藝術感 */
             .ad-hero {
                 display: flex;
                 flex-direction: column;
-                gap: 5px; /* 大幅縮小間距 */
-                min-height: auto;
-                margin: 15px 0; /* 縮小外邊距 */
-                padding: 0 15px;
+                gap: 0px; /* 完全無間距 */
+                height: auto;
+                margin: 20px 10px;
             }
 
             .ad-img-wrapper {
                 position: static;
                 width: 100%;
-                max-width: 100%;
-                margin: 0 auto;
+                height: auto;
+                transform: none;
+                border-radius: 15px;
+                margin: 0;
+            }
+
+            .ad-hero .img-top {
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+
+            .ad-hero .img-bottom {
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+                margin-top: -1px; /* 完全貼合 */
+            }
+
+            .ad-img-wrapper img {
+                height: 220px;
+                object-fit: cover;
             }
 
             .ad-overlay {
                 justify-content: center;
-                padding: 25px 20px; /* 從 30px 改為 25px */
+                padding: 20px 15px;
             }
 
             .ad-overlay h2 {
@@ -438,6 +506,11 @@
             .btn {
                 padding: 10px 20px;
                 font-size: 14px;
+            }
+
+            /* 移除旋轉效果在平板上 */
+            .ad-hero .img-top::before {
+                display: none;
             }
         }
 
@@ -467,15 +540,18 @@
                 min-width: 100%;
             }
 
-            /* 廣告區塊 - 極小間距 */
+            /* 廣告區塊 - 完全無間距 */
             .ad-hero {
-                gap: 3px; /* 從 10px 改為 3px */
-                margin: 10px 0; /* 從 15px 改為 10px */
-                padding: 0 10px;
+                gap: 0px;
+                margin: 15px 8px;
+            }
+
+            .ad-img-wrapper img {
+                height: 200px;
             }
 
             .ad-overlay {
-                padding: 20px 15px; /* 稍微縮小 padding */
+                padding: 18px 15px;
             }
 
             .ad-overlay h2 {
@@ -484,6 +560,11 @@
 
             .ad-overlay p {
                 font-size: 0.9rem;
+            }
+
+            /* 確保完全貼合 */
+            .ad-hero .img-bottom {
+                margin-top: -2px;
             }
         }
 
@@ -512,31 +593,39 @@
                 min-width: 100%;
             }
 
-            /* 廣告區塊 - 幾乎無間距 */
+            /* 廣告區塊 - 完全無間距 */
             .ad-hero {
-                gap: 2px; /* 從 8px 改為 2px - 幾乎貼在一起 */
-                margin: 8px 0; /* 從 10px 改為 8px */
-                padding: 0 8px;
+                gap: 0px;
+                margin: 10px 5px;
+            }
+
+            .ad-img-wrapper img {
+                height: 180px;
             }
 
             .ad-overlay {
-                padding: 15px 15px; /* 從 20px 改為 15px */
+                padding: 15px 12px;
             }
 
             .ad-overlay h2 {
                 font-size: 1.2rem;
                 letter-spacing: 1px;
-                margin-bottom: 8px; /* 縮小間距 */
+                margin-bottom: 8px;
             }
 
             .ad-overlay p {
                 font-size: 0.85rem;
-                margin-bottom: 12px; /* 從 15px 改為 12px */
+                margin-bottom: 12px;
             }
 
             .ad-btn {
                 padding: 8px 20px;
                 font-size: 0.9rem;
+            }
+
+            /* 確保完全貼合 */
+            .ad-hero .img-bottom {
+                margin-top: -2px;
             }
         }
 
@@ -553,12 +642,16 @@
             }
 
             .ad-hero {
-                gap: 1px; /* 從 5px 改為 1px - 幾乎無間距 */
-                margin: 5px 0;
+                gap: 0px;
+                margin: 8px 3px;
+            }
+
+            .ad-img-wrapper img {
+                height: 160px;
             }
 
             .ad-overlay {
-                padding: 12px 10px; /* 更小的 padding */
+                padding: 12px 10px;
             }
 
             .ad-overlay h2 {
@@ -569,6 +662,11 @@
             .ad-overlay p {
                 font-size: 0.8rem;
                 margin-bottom: 10px;
+            }
+
+            /* 確保完全貼合 */
+            .ad-hero .img-bottom {
+                margin-top: -3px;
             }
         }
 
@@ -824,6 +922,31 @@
             </div>
         </div>
     </div>
+
+	<div class="demo-section">
+            <h2 class="demo-title">方案三：藝術重疊設計</h2>
+            <p class="demo-description">完全無間距的藝術重疊，桌面版有輕微旋轉效果，手機版緊密貼合</p>
+            
+            <div class="ad-hero-v3">
+                <div class="ad-img-wrapper img-top">
+                     <img src="images/34.jpg" alt="廣告圖片 1">
+                    <div class="ad-overlay">
+                        <h2>NEW COLLECTION</h2>
+                        <p>奢華唇彩，優雅新上市</p>
+                        <a href="#" class="ad-btn">立即選購</a>
+                    </div>
+                </div>
+
+                <div class="ad-img-wrapper img-bottom">
+                    <img src="images/35.jpg" alt="廣告圖片 2">
+                    <div class="ad-overlay">
+                        <h2>LIMITED EDITION</h2>
+                        <p>經典香氛，限量收藏</p>
+                        <a href="#" class="ad-btn">探索更多</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 	
     <!-- 新品上市 - 唇彩系列 -->
     <div id="lipstick-section" class="alert alert-danger mt-4">
@@ -1059,6 +1182,7 @@
 </script>
 </body>
 </html>  
+
 
 
 
