@@ -208,13 +208,15 @@
             max-width: 500px;
         }
 
-	/* === YSL 高級重疊廣告設計 === */
+/* === YSL風格：圖片滿版 + 半透明黑金漸層 === */
 .ad-hero-ysl {
   position: relative;
   height: 500px;
   margin: 50px 15px;
   overflow: hidden;
-  background-color: #000; /* 黑底增加奢華感 */
+  /* 背景過渡：黑色淡出到白色 */
+  background: linear-gradient(to bottom, #fff 0%, #000 80%);
+  border-radius: 20px;
 }
 
 /* 圖片容器 */
@@ -223,10 +225,9 @@
   border-radius: 20px;
   overflow: hidden;
   transition: transform 0.6s ease, box-shadow 0.6s ease;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
 }
 
-/* 左上大圖 */
+/* 左上圖片 */
 .ad-hero-ysl .img-top {
   top: 0;
   left: 0;
@@ -234,10 +235,9 @@
   height: 65%;
   z-index: 2;
   transform: rotate(-2deg);
-  border: 1px solid rgba(193,163,95,0.6);
 }
 
-/* 右下圖 */
+/* 右下圖片 */
 .ad-hero-ysl .img-bottom {
   bottom: 0;
   right: 0;
@@ -245,7 +245,6 @@
   height: 65%;
   z-index: 1;
   transform: rotate(1deg);
-  border: 1px solid rgba(193,163,95,0.6);
 }
 
 /* 圖片樣式 */
@@ -256,38 +255,17 @@
   transition: transform 0.6s ease;
 }
 
-/* Hover 效果：放大並加亮金邊 */
+/* Hover 效果 */
 .ad-img-wrapper:hover {
   transform: scale(1.05);
-  box-shadow: 0 25px 60px rgba(193,163,95,0.4);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.4);
 }
 
 .ad-img-wrapper:hover img {
   transform: scale(1.05);
 }
 
-/* 金色邊框亮化效果 */
-.ad-img-wrapper::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  border: 2px solid transparent;
-  background: linear-gradient(45deg, #C1A35F, #FFD700) border-box;
-  -webkit-mask: 
-    linear-gradient(#fff 0 0) padding-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.ad-img-wrapper:hover::before {
-  opacity: 1;
-}
-
-/* Overlay 文字區塊 */
+/* 半透明黑金漸層文字區 */
 .ad-overlay {
   position: absolute;
   inset: 0;
@@ -295,10 +273,11 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.05));
   padding: 30px 20px;
-  color: #FFD700;
   text-align: center;
+  /* 黑金漸層 */
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0.1) 100%);
+  color: #FFD700;
   opacity: 0;
   transition: opacity 0.4s ease;
 }
@@ -321,6 +300,7 @@
   opacity: 0.85;
 }
 
+/* 按鈕 */
 .ad-btn {
   border: 1px solid #FFD700;
   background: transparent;
@@ -337,13 +317,14 @@
   color: #000;
 }
 
-/* 響應式：平板以下改為垂直堆疊 */
+/* 響應式：平板以下改垂直堆疊 */
 @media (max-width: 991px) {
   .ad-hero-ysl {
     display: flex;
     flex-direction: column;
     height: auto;
     gap: 0;
+    background: linear-gradient(to bottom, #fff 0%, #000 100%);
   }
   .ad-img-wrapper {
     position: static;
@@ -359,7 +340,6 @@
     justify-content: center;
   }
 }
-
 	    
     </style>
 </head>
@@ -567,25 +547,25 @@
     </div>
 
     <!-- 廣告圖片 - 高級錯位設計（響應式優化版） -->
-	<div class="ad-hero-ysl">
-	  <div class="ad-img-wrapper img-top">
-	    <img src="images/34.jpg" alt="廣告圖片 1">
-	    <div class="ad-overlay">
-	      <h2>NEW COLLECTION</h2>
-	      <p>奢華唇彩，優雅新上市</p>
-	      <a href="#" class="ad-btn">立即選購</a>
-	    </div>
-	  </div>
-	
-	  <div class="ad-img-wrapper img-bottom">
-	    <img src="images/35.jpg" alt="廣告圖片 2">
-	    <div class="ad-overlay">
-	      <h2>LIMITED EDITION</h2>
-	      <p>經典香氛，限量收藏</p>
-	      <a href="#" class="ad-btn">探索更多</a>
-	    </div>
-	  </div>
-	</div>
+<div class="ad-hero-ysl">
+  <div class="ad-img-wrapper img-top">
+    <img src="images/34.jpg" alt="廣告圖片 1">
+    <div class="ad-overlay">
+      <h2>NEW COLLECTION</h2>
+      <p>奢華唇彩，優雅新上市</p>
+      <a href="#" class="ad-btn">立即選購</a>
+    </div>
+  </div>
+
+  <div class="ad-img-wrapper img-bottom">
+    <img src="images/35.jpg" alt="廣告圖片 2">
+    <div class="ad-overlay">
+      <h2>LIMITED EDITION</h2>
+      <p>經典香氛，限量收藏</p>
+      <a href="#" class="ad-btn">探索更多</a>
+    </div>
+  </div>
+</div>
 		
     <!-- 新品上市 - 唇彩系列 -->
     <div id="lipstick-section" class="alert alert-danger mt-4">
@@ -821,6 +801,7 @@
 </script>
 </body>
 </html>  
+
 
 
 
