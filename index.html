@@ -4,36 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 修改這行來防止縮放 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>A111280007 劉芷庭</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <style>
-	/* 將此代碼添加到您的 <head> 部分或 CSS 文件中 */
-
-	/* 防止移動設備縮放 */
-	@viewport {
-	    width: device-width;
-	    zoom: 1.0;
-	    min-zoom: 1.0;
-	    max-zoom: 1.0;
-	    user-zoom: fixed;
-	}
-	
-	/* 替代方法 - 添加到現有的 meta viewport 標籤 */
-	/* <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> */
-	
-	/* 通過 CSS 防止縮放（瀏覽器支持有限） */
-	html {
-	    touch-action: manipulation;
-	}
-	
-	/* 防止移動設備雙指縮放 */
-	body {
-	    touch-action: pan-x pan-y;
-	}
-	    
         /* ===== 基本設定 ===== */
         * {
             box-sizing: border-box;
@@ -42,6 +19,13 @@
         body {
             font-family: Arial, sans-serif;
             overflow-x: hidden; /* 防止水平滾動 */
+            /* 防止縮放的額外設定 */
+            touch-action: pan-x pan-y;
+        }
+
+        /* 防止縮放 */
+        html {
+            touch-action: manipulation;
         }
 
         img {
@@ -1060,5 +1044,6 @@
 </script>
 </body>
 </html>  
+
 
 
